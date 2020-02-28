@@ -153,7 +153,7 @@ def compute_data(df):
                 e_x, e_y, e_z,
                 e_vx, e_vy, e_vz, speed, speed_gt, e_speed]
 
-        elif 't_vehicle_groundtruth_0__f_q_0_' in df or 't_vehicle_local_position_0__f_x' in df:
+        elif 't_vehicle_groundtruth_0__f_q_0_' in df and 't_vehicle_local_position_0__f_x' in df:
             msg_gt = 't_vehicle_groundtruth_0'
             roll_gt, pitch_gt, yaw_gt = series_quat2euler(
                 df.t_vehicle_groundtruth_0__f_q_0_,
