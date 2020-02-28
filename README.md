@@ -11,21 +11,6 @@ A log analysis toolbox for the [PX4 autopilot](http://px4.io/) written in python
 * Well integrated with **Jupyter** notebook and **Pandas**.
 * Natively uses pandas **CSV format** so easily integrated with all log formats.
 
-## Usage
-
-ulog format
-
-	No preprocessing required, see [ulog example](https://github.com/dronecrew/px4tools/blob/master/examples/ulog%20analysis.ipynb).
-	
-
-## Examples:
-
-1. [Automatic System Identification and Control Design](https://github.com/dronecrew/px4tools/blob/master/examples/Log%20based%20System%20Identification%20and%20Control%20Design.ipynb)
-2. [General Flight Data Plotting](https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb)
-3. [ULOG basic use](https://github.com/dronecrew/px4tools/blob/master/examples/ulog%20analysis.ipynb).
-4. [ULOG noise analysis](https://github.com/dronecrew/px4tools/blob/master/examples/ulog%20noise%20analysis.ipynb).
-
-
 ## Install
 
 1. Create venv
@@ -48,3 +33,10 @@ ulog format
 	```bash
 	jupyter-notebook
 	```
+
+## Examples:
+
+1. [Automatic System Identification and Control Design](https://github.com/dronecrew/px4tools/blob/master/examples/Log%20based%20System%20Identification%20and%20Control%20Design.ipynb)
+2. [General Flight Data Plotting](https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb)
+3. [ULOG basic use](https://github.com/dronecrew/px4tools/blob/master/examples/ulog%20analysis.ipynb).
+4. [ULOG noise analysis](https://github.com/dronecrew/px4tools/blob/master/examples/ulog%20noise%20analysis.ipynb).
