@@ -33,6 +33,14 @@ A log analysis toolbox for the [PX4 autopilot](http://px4.io/) written in python
 	```bash
 	jupyter-notebook
 	```
+	
+## Troubleshooting
+```bash
+TypeError: No support for MIMO without slycot
+```
+
+Install slycot ```bash pip install slycot```. If you get the error ```bash ERROR: Failed building wheel for slycot```, you need to install slycot from source (see [here](https://github.com/python-control/Slycot)).
+For that, you need fortran compiler (```bash sudo apt install gfortran```)
 
 ## Examples:
 
