@@ -11,6 +11,9 @@ A log analysis toolbox for the [PX4 autopilot](http://px4.io/) written in python
 * Well integrated with **Jupyter** notebook and **Pandas**.
 * Natively uses pandas **CSV format** so easily integrated with all log formats.
 
+### px4tools Manual
+https://px4tools.readthedocs.io/en/latest/#
+
 ## Install
 
 1. Create venv
