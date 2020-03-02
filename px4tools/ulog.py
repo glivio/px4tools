@@ -496,50 +496,72 @@ def series_quat2euler(q0, q1, q2, q3, msg_name):
     roll = pd.Series(name=msg_name + '__f_roll', data=roll, index=q0.index)
     return roll, pitch, yaw
 
+def quat_to_euler(q0, q1, q2, q3):
+    #321
+    angles = []
+    for i in range(len(q0)):
+        roll = 180/np.pi * np.arctan2(2.0 * (q0[i] * q1[i] + q2[i] * q3[i]),  1.0 - 2.0 * (q1[i]**2 + q2[i]**2))
+        pitch = 180/np.pi * np.arcsin(2.0 * (q0[i] * q2[i] - q3[i] * q1[i]))
+        yaw = 180/np.pi * np.arctan2(2.0 * (q0[i] * q3[i] + q1[i] * q2[i]),  1.0 - 2.0 * (q2[i]**2 + q3[i]**2))
+        angles.append([roll, pitch, yaw])
+    return angles
 
 def estimator_analysis(df, plot=True):
     """
     Evaluates estimator performance
     """
     # pylint: disable=unused-variable
+
+    rpy = quat_to_euler(t_vehicle_attitude_0__f_q_0_, t_vehicle_attitude_0__f_q_1_, t_vehicle_attitude_0__f_q_2_, t_vehicle_attitude_0__f_q_3_)
+
+    roll_error = rpy[0]
+    pitch_error = rpy[1]
+    yaw_error =rpy[2]
+    local_position_x_error = t_vehicle_local_position_setpoint_0__f_x
+    local_position_y_error = t_vehicle_local_position_setpoint_0__f_y
+    local_position_z_error = t_vehicle_local_position_setpoint_0__f_z
+    local_position_vx_error = t_vehicle_local_position_setpoint_0__f_vx
+    local_position_vy_error = t_vehicle_local_position_setpoint_0__f_vy
+    local_position_vz_error = t_vehicle_local_position_setpoint_0__f_vz
     data = {
         'roll_error_mean': np.rad2deg(
-            df.t_vehicle_attitude_0__f_roll_error.mean()),
+            roll_error.mean()),
         'pitch_error_mean': np.rad2deg(
-            df.t_vehicle_attitude_0__f_pitch_error.mean()),
+            pitch_error.mean()),
         'yaw_error_mean': np.rad2deg(
-            df.t_vehicle_attitude_0__f_yaw_error.mean()),
+            yaw_error.mean()),
         'roll_error_std': np.rad2deg(
-            df.t_vehicle_attitude_0__f_roll_error.std()),
+            roll_error.std()),
         'pitch_error_std': np.rad2deg(
-            df.t_vehicle_attitude_0__f_pitch_error.std()),
+            pitch_error.std()),
         'yaw_error_std': np.rad2deg(
-            df.t_vehicle_attitude_0__f_yaw_error.std()),
+            yaw_error.std()),
         'x_error_mean':
-            df.t_vehicle_local_position_0__f_x_error.mean(),
+            local_position_x_error.mean(),
         'y_error_mean':
-            df.t_vehicle_local_position_0__f_y_error.mean(),
+            local_position_y_error.mean(),
         'z_error_mean':
-            df.t_vehicle_local_position_0__f_z_error.mean(),
+            local_position_z_error.mean(),
         'vx_error_mean':
-            df.t_vehicle_local_position_0__f_vx_error.mean(),
+            local_position_vx_error.mean(),
         'vy_error_mean':
-            df.t_vehicle_local_position_0__f_vy_error.mean(),
+            local_position_vy_error.mean(),
         'vz_error_mean':
-            df.t_vehicle_local_position_0__f_vz_error.mean(),
+            local_position_vz_error.mean(),
         'x_error_std':
-            df.t_vehicle_local_position_0__f_x_error.std(),
+            local_position_x_error.std(),
         'y_error_std':
-            df.t_vehicle_local_position_0__f_y_error.std(),
+            local_position_y_error.std(),
         'z_error_std':
-            df.t_vehicle_local_position_0__f_z_error.std(),
+            local_position_z_error.std(),
         'vx_error_std':
-            df.t_vehicle_local_position_0__f_vx_error.std(),
+            local_position_vx_error.std(),
         'vy_error_std':
-            df.t_vehicle_local_position_0__f_vy_error.std(),
+            local_position_vy_error.std(),
         'vz_error_std':
-            df.t_vehicle_local_position_0__f_vz_error.std(),
+            local_position_vz_error.std(),
     }
+
     if plot:
         print('''
         ESTIMATOR ANALYSIS
